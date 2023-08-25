@@ -68,7 +68,7 @@ fun listItem(name: String, profile: String, resId: Int, modifier: Modifier) {
         Image(
             painter = painterResource(id = resId),
             contentDescription = null,
-            modifier = Modifier.clickable { nextScreen(ctx) }
+            modifier = Modifier.clickable { nextScreen(ctx, resId, name) }
                 .size(40.dp)
 
         )
@@ -80,7 +80,9 @@ fun listItem(name: String, profile: String, resId: Int, modifier: Modifier) {
 
 }
 
-private fun nextScreen(ctx : Context) {
+private fun nextScreen(ctx : Context, resId : Int, name : String) {
     val intent : Intent = Intent(ctx, HomeActivity::class.java)
+    intent.putExtra("name", name)
+    intent.putExtra("resId", resId)
     ctx.startActivity(intent)
 }
